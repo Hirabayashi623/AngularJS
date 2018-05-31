@@ -1,0 +1,66 @@
+<!DOCTYPE>
+<html lang="ja" ng-app="sample_2">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJSの練習</title>
+	<script src="../../common/js/jquery-3.3.1.min.js"></script>
+	<script src="../../common/js/bootstrap.min.js"></script>
+	<link href="../../common/css/bootstrap.min.css" rel="stylesheet"></link>
+	<script src="../js/angular.min.js"></script>
+	<script src="../js/myscript.js"></script>
+</head>
+<body>
+	<h1>AngularJSの練習</h1>
+	<h3 class="text-center bg-primary">lesson8</h3>
+	<div ng-controller="mainCtrl">
+		<form name="sample_2.form" ng-submit="add()">
+			<p>Name: <input type="text" name="name" ng-model="user.name"></p>
+			<p>Age: <input type="text" name="age" ng-model="user.age"></p>
+			<p><input type="submit" value="add"></p>
+		</form>
+		<pre>{{user|json}}</pre>
+		<table class="table table-bordered table-hover">
+			<thead class="bg-success"><tr><td>name</td><td>age</td></tr></thead>
+			<tbody><tr ng-repeat="user in users">
+					<td>{{user.name}}</td><td>{{user.age}}</td>
+			</tr></tbody>
+		</table>
+	</div>
+
+	<h3 class="text-center bg-primary">様々なフォーム部品の使い方</h3>
+	<div ng-controller="mainCtrl">
+		<form name="myForm" novalidate>
+			<p>Name:
+				<input type="text" name="name" ng-model="model.name" required ng-minlength="3" ng-maxlength="8">
+				<span ng-show="myForm.name.$error.required">Required!</span>
+			</p>
+			<p>Email:
+				<input type="email" name="email" ng-model="model.email">
+				<span ng-show="myForm.email.$error.email">Not valid email!</span>
+			</p>
+			<p>URL:
+				<input type="url" name="url" ng-model="model.url">
+				<span ng-show="myForm.url.$error.url">Not valid URL!</span>
+			</p>
+			<p>Memo:
+				<textarea bg-maxlength="200" name="memo" ng-model="model.memo"></textarea>{{200 - model.memo.length}}
+			</p>
+			<p>18+ :
+				<input type="checkbox" ng-model="model.adult" name="adult" ng-true-value="'adult'" ng-false-value="'child'">
+			</p>
+			<p>Phone:
+				<input type="radio" name="phone" ng-model="model.phone" value="iPhone">iPhone
+				<input type="radio" name="phone" ng-model="model.phone" value="Android">Android
+			</p>
+			<p>Gender:
+				<select name="gender" ng-model="model.gender" ng-options="gender for gender in ['man', 'woman']" ng-init="model.gender='man'"></select>
+			</p>
+		</form>
+		<pre>{{model|json}}</pre>
+	</div>
+</body>
+</html>
+
+
+
+

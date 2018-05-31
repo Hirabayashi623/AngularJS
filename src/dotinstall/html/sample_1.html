@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html lang="ja" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJSの練習</title>
+	<script src="../../common/js/jquery-3.3.1.min.js"></script>
+	<script src="../../common/js/bootstrap.min.js"></script>
+	<link href="../../common/css/bootstrap.min.css" rel="stylesheet"></link>
+	<script src="../js/angular.min.js"></script>
+	<script src="../js/myscript.js"></script>
+</head>
+<body>
+	<h1>AngularJSの練習</h1>
+	<h3>lesson1</h3>
+	<input type="text" ng-model="name">
+	<p>こんにちは！{{name}}</p>
+
+	<h3>lesson2</h3>
+	<div ng-controller="MainController">
+		<p>{{users.length}} users.</p>
+		<ol>
+			<li ng-repeat="user in users">{{user.name}} {{user.name|uppercase}}</li>
+		</ol>
+	</div>
+
+	<h3>lesson3</h3>
+	<div ng-controller="MainController">
+		<ol>
+			<li ng-repeat="user in users">{{user.name|uppercase}}</li>
+		</ol>
+	</div>
+
+	<h3>lesson4</h3>
+	<div ng-controller="MainController">
+		フィルタ文字列：<input type="text" ng-model="filter1.name">
+		<ol>
+			<li ng-repeat="user in users|filter:filter1|orderBy:'age'">{{user.name}} {{user.age}}</li>
+		</ol>
+	</div>
+
+	<h3>lesson5</h3>
+	<div ng-controller="MainController">
+		フィルタ文字列：<input type="text" ng-model="filter2.name">
+		<table class="table table-bordered table-hover">
+			<thead class="bg-success"><tr><td>index</td><td>first</td><td>middle</td><td>last</td><td>name</td><td>age</td></tr></thead>
+			<tbody>
+				<tr ng-repeat="user in users|filter:filter2">
+					<td>{{$index}}</td><td>{{$first}}</td><td>{{$middle}}</td><td>{{$last}}</td><td>{{user.name}}</td><td>{{user.age}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h3>lesson6</h3>
+	<div ng-controller="MainController">
+		<table class="table table-bordered table-hover">
+			<thead class="bg-success"><tr><td>index</td><td>first</td><td>middle</td><td>last</td><td>name</td><td>age</td></tr></thead>
+			<tbody>
+				<tr ng-repeat="user in users" ng-controller="userItemCtrl">
+					<td>{{$index}}</td><td>{{$first}}</td><td>{{$middle}}</td><td>{{$last}}</td><td>{{user.name}}</td><td>{{user.age}}</td>
+					<td><button class="btn btn-primary" ng-click="increment()">+1</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
+
+
+
+
